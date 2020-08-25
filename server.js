@@ -16,6 +16,11 @@ const io = socketio(server);
 io.on('connection', (socket) => {
     console.log("Someone connected");
     socket.emit('message', 'Connection has been established.');
+
+    socket.on('message', (text) => {
+        //io sends message to everyone connected.
+        io.emit('message', text);
+    });
 });
 
 //error logging
