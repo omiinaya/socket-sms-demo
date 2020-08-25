@@ -5,7 +5,6 @@ const socketio = require('socket.io');
 
 //file serving
 const app = express();
-
 const clientPath = "${__dirname}/../client";
 app.use(express.static(clientPath));
 

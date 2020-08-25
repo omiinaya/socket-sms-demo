@@ -1,8 +1,6 @@
-const e = require("express");
+const socket = io();
 
-const sock = io();
-
-const writeEvent = (event) => {
+const writeEvent = (text) => {
 
     const parent = document.querySelector('#events');
 
@@ -11,3 +9,5 @@ const writeEvent = (event) => {
 
     parent.appendChild(element);
 }
+
+writeEvent('Welcome to the chat!')
