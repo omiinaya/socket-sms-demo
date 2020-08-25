@@ -8,6 +8,7 @@ const app = express();
 const clientPath = "${__dirname}/../client";
 app.use(express.static(clientPath));
 
+//creating io socket server
 const server = http.createServer(app);
 const io = socketio(server);
 
