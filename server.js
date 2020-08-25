@@ -5,12 +5,16 @@ const socketio = require('socket.io');
 
 //file serving
 const app = express();
-app.use(express.static('${__dirname}/client'));
+
+const clientPath = "${__dirname}/../client";
+app.use(express.static(clientPath));
+
 const server = http.createServer(app);
 const io = socketio(server);
 
 //providing feedback on connection
 io.on('connection', (socket) => {
+    console.log("Someone connected");
     socket.emit('message', 'Connection has been established.');
 });
 
@@ -20,6 +24,6 @@ server.on('error', (err) => {
 });
 
 //listener
-server.listen(8080, () => {
-    console.log('Server started on 8080');
+server.listen(3000, () => {
+    console.log('Server started on 3000');
 });
