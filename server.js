@@ -1,3 +1,6 @@
+//constants
+const port = 3000;
+
 //dependencies
 const http = require('http');
 const express = require('express');
@@ -12,13 +15,12 @@ app.use(express.static(clientPath));
 const server = http.createServer(app);
 const io = socketio(server);
 
-//providing feedback on connection
+//when someone connects...
 io.on('connection', (socket) => {
-    console.log("Someone connected");
+    //alerts the user he is connected.
     socket.emit('message', 'Connection has been established.');
-
+    //io relays message to everyone else in chat.
     socket.on('message', (text) => {
-        //io sends message to everyone connected.
         io.emit('message', text);
     });
 });
@@ -29,6 +31,6 @@ server.on('error', (err) => {
 });
 
 //listener
-server.listen(3000, () => {
-    console.log('Server started on 3000');
+server.listen(port, () => {
+    console.log('Server started on '+port);
 });
